@@ -4,6 +4,7 @@ Customer::Customer() : Person()
 {
     customerID = 0;
     password = "";
+    account = nullptr;
 }
 
 Customer::Customer(int customerID,
@@ -15,6 +16,7 @@ Customer::Customer(int customerID,
 {
     this->customerID = customerID;
     this->password = password;
+    this->account = nullptr;
 }
 
 void Customer::setCustomerID(int customerID)
@@ -25,6 +27,16 @@ void Customer::setCustomerID(int customerID)
 void Customer::setPassword(string password)
 {
     this->password = password;
+}
+
+void Customer::setAccount(Account* account)
+{
+    this->account = account;
+}
+
+Account* Customer::getAccount() const
+{
+    return account;
 }
 
 int Customer::getCustomerID() const
@@ -47,8 +59,14 @@ void Customer::display() const
     Person::display();
 
     cout << "Customer ID : " << customerID << endl;
+
+    if(account != nullptr)
+    {
+        account->display();
+    }
 }
 
 Customer::~Customer()
 {
+    delete account;
 }
