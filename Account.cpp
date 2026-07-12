@@ -1,22 +1,29 @@
 #include "Account.h"
 
 Account::Account()
+    : accountNumber(0), customerID(0), balance(0.0), accountType("")
 {
-    accountNumber = 0;
-    balance = 0;
-    accountType = "";
 }
 
-Account::Account(int accountNumber, double balance, string accountType)
+Account::Account(int accountNumber,
+                 int customerID,
+                 double balance,
+                 string accountType)
+    : accountNumber(accountNumber),
+      customerID(customerID),
+      balance(balance),
+      accountType(accountType)
 {
-    this->accountNumber = accountNumber;
-    this->balance = balance;
-    this->accountType = accountType;
 }
 
 int Account::getAccountNumber() const
 {
     return accountNumber;
+}
+
+int Account::getCustomerID() const
+{
+    return customerID;
 }
 
 double Account::getBalance() const
@@ -31,15 +38,13 @@ string Account::getAccountType() const
 
 void Account::deposit(double amount)
 {
-    if(amount > 0)
+    if (amount <= 0)
     {
-        balance += amount;
-        cout << "Deposit Successful!" << endl;
+        cout << "Invalid Amount" << endl;
+        return;
     }
-    else
-    {
-        cout << "Invalid Amount!" << endl;
-    }
+
+    balance += amount;
 }
 
 Account::~Account()

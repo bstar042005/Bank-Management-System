@@ -1,17 +1,13 @@
 #include "Person.h"
 
 Person::Person()
+    : name(""), age(0), phoneNumber("")
 {
-    name = "";
-    age = 0;
-    phoneNumber = "";
 }
 
 Person::Person(string name, int age, string phoneNumber)
+    : name(name), age(age), phoneNumber(phoneNumber)
 {
-    this->name = name;
-    this->age = age;
-    this->phoneNumber = phoneNumber;
 }
 
 void Person::setName(string name)
@@ -46,9 +42,9 @@ string Person::getPhoneNumber() const
 
 void Person::display() const
 {
-    cout << "Name : " << name << endl;
-    cout << "Age : " << age << endl;
-    cout << "Phone : " << phoneNumber << endl;
+    cout << "Name         : " << name << endl;
+    cout << "Age          : " << age << endl;
+    cout << "Phone Number : " << phoneNumber << endl;
 }
 
 Person::~Person()

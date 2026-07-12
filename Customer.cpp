@@ -1,10 +1,8 @@
 #include "Customer.h"
 
-Customer::Customer() : Person()
+Customer::Customer()
+    : Person(), customerID(0), password(""), account(nullptr)
 {
-    customerID = 0;
-    password = "";
-    account = nullptr;
 }
 
 Customer::Customer(int customerID,
@@ -12,11 +10,11 @@ Customer::Customer(int customerID,
                    int age,
                    string phoneNumber,
                    string password)
-    : Person(name, age, phoneNumber)
+    : Person(name, age, phoneNumber),
+      customerID(customerID),
+      password(password),
+      account(nullptr)
 {
-    this->customerID = customerID;
-    this->password = password;
-    this->account = nullptr;
 }
 
 void Customer::setCustomerID(int customerID)
@@ -60,7 +58,7 @@ void Customer::display() const
 
     cout << "Customer ID : " << customerID << endl;
 
-    if(account != nullptr)
+    if (account != nullptr)
     {
         account->display();
     }
@@ -68,5 +66,7 @@ void Customer::display() const
 
 Customer::~Customer()
 {
-    delete account;
+    // Do NOT delete account here.
+    // Bank owns the Account objects and deletes them.
+    account = nullptr;
 }

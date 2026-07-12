@@ -2,6 +2,7 @@
 #define ACCOUNT_H
 
 #include <iostream>
+#include <fstream>
 #include <string>
 
 using namespace std;
@@ -10,27 +11,34 @@ class Account
 {
 protected:
     int accountNumber;
+    int customerID;
     double balance;
     string accountType;
 
 public:
     // Constructors
     Account();
-    Account(int accountNumber, double balance, string accountType);
+
+    Account(int accountNumber,
+            int customerID,
+            double balance,
+            string accountType);
 
     // Getters
     int getAccountNumber() const;
+    int getCustomerID() const;
     double getBalance() const;
     string getAccountType() const;
 
-    // Deposit (same for all account types)
-    virtual void deposit(double amount);
+    // Deposit
+    void deposit(double amount);
 
-    // Different for each account type
-    virtual void withdraw(double amount) = 0;
-
+    // Pure Virtual Functions
+    virtual bool withdraw(double amount) = 0;
     virtual void display() const = 0;
+    virtual void save(ofstream &out) const = 0;
 
+    // Virtual Destructor
     virtual ~Account();
 };
 

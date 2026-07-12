@@ -2,32 +2,72 @@
 #define BANK_H
 
 #include <vector>
+#include <fstream>
+
 #include "Customer.h"
+#include "SavingsAccount.h"
+#include "CurrentAccount.h"
 
 using namespace std;
 
 class Bank
 {
 private:
-
     vector<Customer> customers;
+    vector<Account*> accounts;
 
 public:
+    Bank();
 
-    void createCustomer(Customer customer);
+    // Customer Functions
+    void addCustomer(const Customer& customer);
 
-    Customer* login(int id,string password);
+    Customer* findCustomer(int customerID);
 
-    Customer* searchCustomer(int id);
+    void displayCustomer(int customerID);
 
-    void displayCustomers() const;
+    void displayAllCustomers();
 
-    void deposit(int customerID,double amount);
+    void displayCustomerAccounts(int customerID);
 
-    void withdraw(int customerID,double amount);
+    // Account Functions
+    void createSavingsAccount(int accountNumber,
+                              int customerID,
+                              double balance,
+                              double interestRate);
 
-    void checkBalance(int customerID);
+    void createCurrentAccount(int accountNumber,
+                              int customerID,
+                              double balance,
+                              double overdraftLimit);
 
+    Account* findAccount(int accountNumber);
+
+    void displayAccount(int accountNumber);
+
+    void displayAllAccounts();
+
+    // Transactions
+    void deposit(int accountNumber,
+                 double amount);
+
+    void withdraw(int accountNumber,
+                  double amount);
+
+    void transfer(int sender,
+                  int receiver,
+                  double amount);
+
+    // File Handling
+    void saveCustomers();
+
+    void loadCustomers();
+
+    void saveAccounts();
+
+    void loadAccounts();
+
+    ~Bank();
 };
 
 #endif

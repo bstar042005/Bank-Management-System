@@ -9,19 +9,20 @@ private:
     double overdraftLimit;
 
 public:
-    // Constructors
     CurrentAccount();
+
     CurrentAccount(int accountNumber,
+                   int customerID,
                    double balance,
                    double overdraftLimit);
 
-    // Override functions
-    void withdraw(double amount) override;
+    bool withdraw(double amount) override;
 
     void display() const override;
 
-    // Destructor
-    ~CurrentAccount();
+    void save(ofstream &out) const override;   // <-- ADD THIS
+
+    ~CurrentAccount() override;
 };
 
 #endif

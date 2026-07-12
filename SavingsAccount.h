@@ -9,19 +9,24 @@ private:
     double interestRate;
 
 public:
-    // Constructors
     SavingsAccount();
-    SavingsAccount(int accountNumber, double balance, double interestRate);
 
-    // Functions
-    void withdraw(double amount) override;
+    SavingsAccount(int accountNumber,
+                   int customerID,
+                   double balance,
+                   double interestRate);
+
+    double getInterestRate() const;
+
+    bool withdraw(double amount) override;
 
     void display() const override;
 
+    void save(ofstream& out) const override;
+
     void calculateInterest();
 
-    // Destructor
-    ~SavingsAccount();
+    ~SavingsAccount() override;
 };
 
 #endif

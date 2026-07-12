@@ -14,20 +14,24 @@ protected:
     string phoneNumber;
 
 public:
+    // Constructors
     Person();
     Person(string name, int age, string phoneNumber);
 
+    // Setters
     void setName(string name);
-    string getName() const;
-
     void setAge(int age);
-    int getAge() const;
-
     void setPhoneNumber(string phoneNumber);
+
+    // Getters
+    string getName() const;
+    int getAge() const;
     string getPhoneNumber() const;
 
+    // Display
     virtual void display() const;
 
+    // Destructor
     virtual ~Person();
 };
 

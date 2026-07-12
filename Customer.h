@@ -14,6 +14,7 @@ private:
 public:
     // Constructors
     Customer();
+
     Customer(int customerID,
              string name,
              int age,
@@ -37,7 +38,7 @@ public:
     void display() const override;
 
     // Destructor
-    ~Customer();
+    ~Customer() override;
 };
 
 #endif
